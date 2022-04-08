@@ -5,7 +5,7 @@ Created on Fri Apr  8 11:06:53 2022
 
 @author: okubo
 """
-
+from typing import Any
 #固定長スタッククラス
 
 class FixedStack:
@@ -31,3 +31,43 @@ class FixedStack:
         return self.ptr >= self.capacity
     
     
+    def push(self, value: Any) -> None:
+        if self.is_full():
+            raise FixedStack.Full
+        self.stk[self.ptr] = value
+        self.ptr += 1
+    
+    def pop(self) -> Any:
+        if self.is_empty():
+            raise FixedStack.Empty
+        self.ptr -= 1
+        return self.stk[self.ptr]
+    
+    def peek(self) -> Any:
+        if self.is_empty():
+            raise FixedStack.Empty
+        return self.stk[self.ptr - 1]
+    def clear(self) -> None:
+        self.ptr = 0
+        
+    def find(self, value: Any) -> Any:
+        for i in range(self.ptr - 1, -1, -1):
+            if self.stk[i] == value:
+                return i
+            return -1
+        
+    def count(self, value: Any) -> bool:
+        c = 0
+        for i in range(self.ptr):
+            if self.stk[i] == value:
+                c += 1
+        return c
+    
+    def __contains__(self, value: Any) -> bool:
+        return self.count(value)
+    
+    def dump(self) -> None:
+        if self.is.empty():
+            print("スタックは空です。")
+        else:
+            print(self.stk[:self.ptr])

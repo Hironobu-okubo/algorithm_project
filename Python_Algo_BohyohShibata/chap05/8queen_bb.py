@@ -9,9 +9,17 @@ pos = [0] * 3
 flag = [False] * 3
 
 def put():
+    for j in range(3):
+        for i in range(3):
+            print('■' if pos[i] == j else '□', end = '')
+        print()
+    print()
+            
+    '''
     for i in range(3):
         print(f'{pos[i]}',end = ' ')
     print()
+    '''
 
 def set(i: int):
     for j in range(3):
